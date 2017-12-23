@@ -17,8 +17,8 @@ $(function () {
 
     $chatMsgInput.keydown(function (e) {
         var code = e.keyCode ? e.keyCode : e.which;
-        console.log(code);
         if (e.keyCode == 13 && !e.shiftKey) {
+            $sendMsgBtn.trigger('click');
             return false;
         }
     });
