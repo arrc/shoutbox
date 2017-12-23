@@ -10,6 +10,7 @@ const path = require("path")
 const consolidate = require("consolidate")
 const swig = require("swig")
 const bodyParser = require("body-parser")
+const shortid = require('shortid');
 
 // Express config
 app.set("showStackError", true)
@@ -32,9 +33,10 @@ server.listen(4000, () => {
 // Socket stuff!
 io.on('connection', (client) => {
     console.log('Client connected...');
+    client['username'] = shortid.generate();
     
     client.on('client:msg', (data) => {
         console.log('message received on server', data)
-        io.emit('server:msg', data);
+        io.emit('server:msg', {msg: data, username: client.username});
     })
 })
