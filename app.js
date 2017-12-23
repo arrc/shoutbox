@@ -5,6 +5,7 @@ require("dotenv").config({path: ".env"})
 const express = require("express")
 const app = express()
 const server = require("http").createServer(app)
+const io = require("socket.io")(server)
 const path = require("path")
 const consolidate = require("consolidate")
 const swig = require("swig")
@@ -26,4 +27,9 @@ app.get('/', (req, res, next) => {
 // Start
 server.listen(4000, () => {
 	console.log('listing on port *:4000')
+})
+
+// Socket stuff!
+io.on('connection', (client) => {
+	console.log('Client connected...');
 })

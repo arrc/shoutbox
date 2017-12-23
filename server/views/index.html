@@ -9,10 +9,15 @@
 </head>
 <body>
     <div class="container">
-        <h2>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam cupiditate rem nobis delectus mollitia rerum enim tempora velit! Officiis perspiciatis dolorem reprehenderit quasi dignissimos voluptatum optio veniam velit nihil fuga?</h2>
+        <div id="ChatList"></div>
+        <section id="MsgForm">
+            <textarea name="message" id="ChatMsgInput"></textarea>
+            <button id="SendMsgBtn">Send</button>
+        </section>
     </div>
 
     <script src="/vendor/jquery-2.2.4.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script src="/static/js/main.js"></script>
 </body>
 </html>
