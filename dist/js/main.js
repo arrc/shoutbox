@@ -9,6 +9,7 @@ $(function () {
 
     socket.on('server:msg', function (data) {
         console.log("server:msg", data);
+        $chatList.append('<div class="chat-msg-wrapper"><p class="chat-msg">' + data + '</p></div>');
     });
 
     var $chatMsgInput = $("#ChatMsgInput");

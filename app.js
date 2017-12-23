@@ -35,5 +35,6 @@ io.on('connection', (client) => {
     
     client.on('client:msg', (data) => {
         console.log('message received on server', data)
+        io.emit('server:msg', data);
     })
 })

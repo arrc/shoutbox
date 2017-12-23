@@ -7,6 +7,7 @@ $(function () {
 
     socket.on('server:msg', function(data){
         console.log("server:msg", data)
+        $chatList.append(`<div class="chat-msg-wrapper"><p class="chat-msg">${data}</p></div>`);        
     })
 
     const $chatMsgInput = $("#ChatMsgInput");
@@ -28,4 +29,5 @@ $(function () {
         socket.emit('client:msg', $chatMsgInput.val());
         $chatMsgInput.val('');
     })
+
 });
