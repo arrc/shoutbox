@@ -7,7 +7,7 @@ $(function () {
 
     socket.on('server:msg', function(data){
         console.log("server:msg", data)
-        $chatList.append(`<div class="chat-msg-wrapper"><p class="chat-msg">${data.msg}</p></div>`);        
+        messageTemplate(data)
     })
 
     const $chatMsgInput = $("#ChatMsgInput");
@@ -30,4 +30,14 @@ $(function () {
         $chatMsgInput.val('');
     })
 
+    function messageTemplate(msg) {
+        const tmpl = `<div class="chat-msg-wrapper">
+            <p class="chat-msg">${msg.message}</p>
+            <section class="msg-meta-info">
+                <span class="msg-username" title="User">${msg.username}</span>
+                <span class="msg-time" title="Time">${msg.createdAt}</span>
+            </section>
+        </div>`
+        $chatList.append(tmpl);
+    }
 });

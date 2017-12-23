@@ -10,7 +10,19 @@ const path = require("path")
 const consolidate = require("consolidate")
 const swig = require("swig")
 const bodyParser = require("body-parser")
+const mongoose = require("mongoose");
 const shortid = require('shortid');
+
+mongoose.Promise = require("bluebird")
+require("./server/mongoose.js")
+
+const messageSchema = mongoose.Schema({
+	message: { type: String, required: true},
+	username: { type: String },
+	createdAt: { type: Date, default: Date.now}
+});
+
+const Message = mongoose.model('Message', messageSchema);
 
 // Express config
 app.set("showStackError", true)
@@ -36,7 +48,9 @@ io.on('connection', (client) => {
     client['username'] = shortid.generate();
     
     client.on('client:msg', (data) => {
-        console.log('message received on server', data)
-        io.emit('server:msg', {msg: data, username: client.username});
+        Message.create({ message: data, username: client.username }, function(err, messageDoc){
+			if (err) console.log('error')
+			io.emit('server:msg', messageDoc);
+		})
     })
 })
