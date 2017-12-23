@@ -31,5 +31,9 @@ server.listen(4000, () => {
 
 // Socket stuff!
 io.on('connection', (client) => {
-	console.log('Client connected...');
+    console.log('Client connected...');
+    
+    client.on('client:msg', (data) => {
+        console.log('message received on server', data)
+    })
 })
