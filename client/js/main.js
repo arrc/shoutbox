@@ -10,6 +10,12 @@ $(function () {
         messageTemplate(data)
     })
 
+    socket.on('server:msgHistory', function(data){
+        data.forEach(message => {
+            messageTemplate(message)
+        })
+    })
+
     const $chatMsgInput = $("#ChatMsgInput");
     const $chatList = $("#ChatList");
     const $sendMsgBtn = $("#SendMsgBtn");

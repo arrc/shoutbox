@@ -46,6 +46,11 @@ server.listen(4000, () => {
 io.on('connection', (client) => {
     console.log('Client connected...');
     client['username'] = shortid.generate();
+
+    Message.find({}).sort('createdAt').limit(30).exec((err, docs) => {
+		if(err) return client.emit('server:error', { code: 400, message: 'Server error.' })
+		client.emit('server:msgHistory', docs);
+	});
     
     client.on('client:msg', (data) => {
         Message.create({ message: data, username: client.username }, function(err, messageDoc){

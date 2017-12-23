@@ -12,6 +12,12 @@ $(function () {
         messageTemplate(data);
     });
 
+    socket.on('server:msgHistory', function (data) {
+        data.forEach(function (message) {
+            messageTemplate(message);
+        });
+    });
+
     var $chatMsgInput = $("#ChatMsgInput");
     var $chatList = $("#ChatList");
     var $sendMsgBtn = $("#SendMsgBtn");
