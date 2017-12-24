@@ -42,6 +42,28 @@ body { margin: 0; padding: 0; }
             flex-direction: row;
             justify-content: space-between;
             font-family: 'Open Sans', sans-serif;
+
+            & .msg-username:before {
+                font-family: FontAwesome;
+                content: "\f007";
+                color: darkgray;
+                font-size: 10px;
+                vertical-align: baseline;
+                font-style: normal;
+                font-weight: normal;
+                padding-right: 0.5em;
+            }
+
+            & .msg-time:before {
+                font-family: FontAwesome;
+                content: "\f017";
+                color: darkgray;
+                font-size: 10px;
+                vertical-align: baseline;
+                font-style: normal;
+                font-weight: normal;
+                padding-right: 0.5em;
+            }
         }
     }
 
@@ -59,6 +81,9 @@ body { margin: 0; padding: 0; }
         font-family: 'Open Sans', sans-serif;
         font-size: 14px;
         border: 1px solid gainsboro;
+        &:focus {
+            outline: 1px solid gainsboro;
+        }
     }
 
     #SendMsgBtn {
@@ -69,6 +94,7 @@ body { margin: 0; padding: 0; }
         color: gray;
         font-family: 'Open Sans', sans-serif;
         border: 1px solid gainsboro;
+        background-color: white;
 
         &:hover { cursor: pointer; }
     }
