@@ -32,9 +32,11 @@ app.set("views", path.resolve("server/views"))
 app.use('/static', express.static(__dirname + '/dist'));
 app.use('/vendor', express.static(__dirname + '/client/vendor'))
 
+const username = shortid.generate();
+
 // Home route
 app.get('/', (req, res, next) => {
-	res.render('index', { title: ">>> Shoutbox <<<" })
+	res.render('index', { title: ">>> Shoutbox <<<", username: username })
 })
 
 // Server
@@ -45,7 +47,7 @@ server.listen(_PORT, () => {
 // Socket stuff!
 io.on('connection', (client) => {
 	console.log('Client connected...');
-	client['username'] = shortid.generate();
+	client['username'] = username;
 
     // Retrive old messages
 	Message.find({}).sort('createdAt').limit(30).exec((err, docs) => {
