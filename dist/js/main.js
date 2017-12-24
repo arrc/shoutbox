@@ -4,18 +4,23 @@ $(function () {
     var socket = io.connect('http://localhost:4000');
 
     socket.on('connect', function () {
-        console.log('wow :)');
+        socket.emit('client:join', 'Hello World from client');
     });
 
     socket.on('server:msg', function (data) {
         console.log("server:msg", data);
         messageTemplate(data);
+        document.getElementById('ChatList').lastChild.scrollIntoView(false);
     });
 
     socket.on('server:msgHistory', function (data) {
         data.forEach(function (message) {
             messageTemplate(message);
         });
+    });
+
+    socket.on('server:error', function (data) {
+        console.log(data);
     });
 
     var $chatMsgInput = $("#ChatMsgInput");

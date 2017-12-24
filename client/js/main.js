@@ -2,12 +2,13 @@ $(function () {
     const socket = io.connect('http://localhost:4000');
     
     socket.on('connect', function() {
-        console.log('wow :)')
+        socket.emit('client:join', 'Hello World from client');
     });
 
     socket.on('server:msg', function(data){
         console.log("server:msg", data)
         messageTemplate(data)
+        document.getElementById('ChatList').lastChild.scrollIntoView(false)
     })
 
     socket.on('server:msgHistory', function(data){
@@ -16,10 +17,13 @@ $(function () {
         })
     })
 
+    socket.on('server:error', function(data) {
+        console.log(data)
+    })
+
     const $chatMsgInput = $("#ChatMsgInput");
     const $chatList = $("#ChatList");
     const $sendMsgBtn = $("#SendMsgBtn");
-
 
     $chatMsgInput.keydown(function (e) {
         let code = (e.keyCode ? e.keyCode : e.which);
