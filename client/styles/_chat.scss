@@ -1,7 +1,9 @@
 * {box-sizing: border-box}
 body { margin: 0; padding: 0; }
 
-
+$primary-font: 'Open Sans', sans-serif;
+$secondary-font: 'Alegreya', serif;
+$border-color: gainsboro;
 .container {
     margin: 10px auto 0;
     width: 400px;
@@ -11,13 +13,13 @@ body { margin: 0; padding: 0; }
 #HeaderArea {
     height: 50px;
     text-align: center;
-    font-family: 'Alegreya', serif;
+    font-family: $secondary-font;
     color: darkcyan;
 }
 
 #ChatList {
     height: 80%;
-    border: 1px solid gainsboro;
+    border: 1px solid $border-color;
     overflow-y: scroll;
     border-radius: 2px;
 
@@ -32,7 +34,7 @@ body { margin: 0; padding: 0; }
         & > p.chat-msg { 
             margin: 10px auto;
             font-size: 14px;
-            font-family: 'Open Sans', sans-serif;
+            font-family: $primary-font;
         }
 
         .msg-meta-info {
@@ -41,7 +43,7 @@ body { margin: 0; padding: 0; }
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            font-family: 'Open Sans', sans-serif;
+            font-family: $primary-font;
 
             & .msg-username:before {
                 font-family: FontAwesome;
@@ -78,11 +80,11 @@ body { margin: 0; padding: 0; }
     #ChatMsgInput {
         width: 330px;
         height: 50px;
-        font-family: 'Open Sans', sans-serif;
+        font-family: $primary-font;
         font-size: 14px;
-        border: 1px solid gainsboro;
+        border: 1px solid $border-color;
         &:focus {
-            outline: 1px solid gainsboro;
+            outline: 1px solid $border-color;
         }
     }
 
@@ -92,8 +94,8 @@ body { margin: 0; padding: 0; }
         vertical-align: top;
         font-size: 20px;
         color: gray;
-        font-family: 'Open Sans', sans-serif;
-        border: 1px solid gainsboro;
+        font-family: $primary-font;
+        border: 1px solid $border-color;
         background-color: white;
 
         &:hover { cursor: pointer; }
