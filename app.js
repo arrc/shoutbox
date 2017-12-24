@@ -39,7 +39,7 @@ app.get('/', (req, res, next) => {
 
 // Server
 server.listen(_PORT, () => {
-	console.log('listing on port *:_PORT')
+	console.log(`listing on port *:${_PORT}`)
 })
 
 // Socket stuff!
